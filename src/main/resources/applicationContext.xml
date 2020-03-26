@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Bean头部 -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 启用spring的注释配置 -->
+    <context:annotation-config/>
+
+    <!-- 自动扫描(自动注入) version=1.0.0_chef3-->
+    <context:component-scan base-package="com.dfire.kds.logic"/>
+
+    <dubbo:registry protocol="zookeeper"
+                    address="zk1.2dfire-daily.com:2181?backup=zk2.2dfire-daily.com:2181,zk3.2dfire-daily.com:2181"/>
+
+    <import resource="application-dubbo.xml"/>
+
+</beans>

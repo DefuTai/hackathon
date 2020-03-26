@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:registry protocol="zookeeper"
+                    address="zk1.2dfire-daily.com,zk2.2dfire-daily.com,zk3.2dfire-daily.com"/>
+
+    <dubbo:consumer check="false" timeout="3000"/>
+    <dubbo:application name="consumer-of-hackathon"/>
+
+    <dubbo:reference id="multiMenuReadService"  interface="com.dfire.soa.item.service.IMultiMenuReadService" version="1.0.0" />
+    <dubbo:reference id="getMenuService"  interface="com.dfire.soa.item.service.IGetMenuService" version="1.0.0" />
+    <dubbo:reference id="cashierUploadOrderService"  interface="com.dfire.soa.order.service.ICashierUploadOrderService" version="1.0.0" />
+
+</beans>

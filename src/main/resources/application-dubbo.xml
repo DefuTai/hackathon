@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:consumer timeout="10000" check="false" />
+    <dubbo:reference id="uniqueIdGenerator" interface="com.dfire.soa.flame.UniqueIdGenerator" version="1.0.0"/>
+
+    <!-- Flame:全局唯一id -->
+    <bean class="com.dfire.soa.flame.FlameFactory" factory-method="getInstance">
+        <constructor-arg name="uniqueIdGenerator" ref="uniqueIdGenerator"/>
+        <!-- 本地缓存的id数量 -->
+        <constructor-arg name="maxTotal" value="5000"/>
+        <!--取id等待的最大时间 -->
+        <constructor-arg name="maxWaitMillis" value="500"/>
+        <!--多久时间从服务器补充id -->
+        <constructor-arg name="minEvictableIdleTimeMillis" value="10000"/>
+    </bean>
+
+    <dubbo:reference id="cashierUploadOrderService" interface="com.dfire.soa.order.service.ICashierUploadOrderService" version="1.0.0" timeout="1000"/>
+
+</beans>
