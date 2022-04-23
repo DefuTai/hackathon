@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-web-version>4.0.6.RELEASE</spring-web-version>
+        <spring-web-version>5.3.19</spring-web-version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <order-upload-client-version>1.0.0</order-upload-client-version>
